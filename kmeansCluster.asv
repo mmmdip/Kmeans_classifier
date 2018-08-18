@@ -1,0 +1,13 @@
+function [] = kmeansCluster()
+    vector = randi( [ -20, 20 ], 1, 100 );
+    points = makePoints( vector );
+    means = initialClusterMean( points );
+    init_labels = logical( zeros( size( points, 1 ), 1))
+    [ labels, c1, c2 ] = makeClusters( points, means );
+    labels
+    while labels ~= init_labels
+        init_labels = labels;
+        means = [ mean( c1 ); mean( c2 ) ];
+        [ labels, c1, c2 ] = makeClusters( points, means );
+    end
+end

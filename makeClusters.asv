@@ -1,0 +1,16 @@
+function labels = makeClusters( points, means )
+    num_points = size( points, 1 );
+    labels = zeros( num_points, 1 );
+    mean1 = means( 1, : );
+    mean2 = means( 2, : );
+    cluster1 = mean1;
+    cluster2 = mean2;
+    for idx = 1 : num_points
+       dist1 = euclidDist( points( idx, : ), means( 1, : ));
+       dist2 = euclidDist( points( idx, : ), means( 2, : ));
+       if dist2 > dist1
+           labels( idx ) = 1;
+       end
+    end
+    labels = logical( labels );
+end
